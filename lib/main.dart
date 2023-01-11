@@ -34,8 +34,6 @@ class _MyAppState extends State<MyApp> {
       routes: {
         "home": (context) => const Home(),
         "category": (context) => const Category(),
-
-        // "favourite": (context) => const Favourite(),
       },
     );
   }
