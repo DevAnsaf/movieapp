@@ -31,9 +31,10 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.black54,
       ),
+      home: const Home(),
       routes: {
         "home": (context) => const Home(),
-        "category": (context) => const Category(),
+        "category": (context) => const Category()
 //aashik use this name for favourite movies
         // "favourite": (context) => const Favourite(),
       },
