@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:movies/pages/Home.dart';
+import 'package:movies/pages/Login/view/Login.dart';
 
 import 'pages/Category.dart';
 
@@ -31,7 +32,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.black54,
       ),
-      home: const Home(),
+      home: const LoginScreen(),
       routes: {
         "home": (context) => const Home(),
         "category": (context) => const Category()
