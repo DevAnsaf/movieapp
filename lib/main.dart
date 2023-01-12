@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:movies/pages/Home.dart';
 import 'package:movies/pages/MovieDetails.dart';
+import 'package:movies/pages/Register.dart';
 
 import 'pages/Category.dart';
 
@@ -32,7 +33,8 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.black54,
       ),
-      home: const Home(),
+      home: const Register(),
+      //home: const Home(),
       routes: {
         "home": (context) => const Home(),
         "category": (context) => const Category(),
