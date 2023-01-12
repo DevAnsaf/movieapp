@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:movies/pages/Home.dart';
 import 'package:movies/pages/Login/view/Login.dart';
-
+import 'package:movies/pages/MovieDetails.dart';
+import 'package:movies/pages/Register.dart';
 import 'pages/Category.dart';
 
 void main() {
@@ -33,9 +34,13 @@ class _MyAppState extends State<MyApp> {
         scaffoldBackgroundColor: Colors.black54,
       ),
       home: const LoginScreen(),
+      //home: const Home(),
       routes: {
+        "login": (context) => const LoginScreen(),
+        "register": (context) => const Register(),
         "home": (context) => const Home(),
-        "category": (context) => const Category()
+        "category": (context) => const Category(),
+        "movie": (context) => const MovieDetails(),
 //aashik use this name for favourite movies
         // "favourite": (context) => const Favourite(),
       },

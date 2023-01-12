@@ -55,8 +55,8 @@ class Home extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20)),
               child: Row(
                 children: [
-                  Container(
-                    width: 300,
+                  Flexible(
+                    //width: 300,
                     child: TextFormField(
                       style: TextStyle(color: Colors.white70),
                       decoration: InputDecoration(
