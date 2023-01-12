@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:movies/pages/Home.dart';
+import 'package:movies/pages/MovieDetails.dart';
 
 import 'pages/Category.dart';
 
@@ -31,9 +32,11 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.black54,
       ),
+      home: const Home(),
       routes: {
         "home": (context) => const Home(),
         "category": (context) => const Category(),
+        "movie": (context) => const MovieDetails(),
 //aashik use this name for favourite movies
         // "favourite": (context) => const Favourite(),
       },
