@@ -31,7 +31,7 @@ class Category extends StatelessWidget {
                       height: 30,
                     ),
                     const Text(
-                        "Discover",
+                      "Discover",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 30,
@@ -46,37 +46,37 @@ class Category extends StatelessWidget {
                 child: Column(
                   children: [
                     for(int i = 1; i < 5; i++ )
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 30),
-                      child: Row(
-                        children: [
-                          ClipRect(
-                            child: Image.asset(
-                              "pictures/img$i.jpg",
-                              height: 70,
-                              width: 90,
-                              fit: BoxFit.cover,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 30),
+                        child: Row(
+                          children: [
+                            ClipRect(
+                              child: Image.asset(
+                                "pictures/img$i.jpg",
+                                height: 70,
+                                width: 90,
+                                fit: BoxFit.cover,
+                              ),
                             ),
-                          ),
-                          const SizedBox(
+                            const SizedBox(
                               width: 10,
-                          ),
-                          const Text(
-                            "Category",
-                            style: TextStyle(
-                              fontSize: 22,
-                              color: Colors.white,
                             ),
-                          ),
-                          Spacer(),
-                          const Icon(
-                            Icons.arrow_forward,
-                            color: Colors.white,
-                            size: 23,
-                          )
-                        ],
+                            const Text(
+                              "Category",
+                              style: TextStyle(
+                                fontSize: 22,
+                                color: Colors.white,
+                              ),
+                            ),
+                            Spacer(),
+                            const Icon(
+                              Icons.arrow_forward,
+                              color: Colors.white,
+                              size: 23,
+                            )
+                          ],
+                        ),
                       ),
-                    ),
                   ],
                 ),
               ),
