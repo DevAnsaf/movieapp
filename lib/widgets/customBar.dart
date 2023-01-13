@@ -52,7 +52,7 @@ class customBar extends StatelessWidget {
           //Account
           InkWell(
             onTap: () {
-              Navigator.pushNamed(context, "login");
+              Navigator.pushNamed(context, "profile");
             },
             child: Icon(
               Icons.account_circle,

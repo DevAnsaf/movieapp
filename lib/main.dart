@@ -33,7 +33,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.black54,
       ),
-      home: const Home(),
+      home: const Profile(),
       routes: {
         "home": (context) => const Home(),
         "category": (context) => const Category(),
