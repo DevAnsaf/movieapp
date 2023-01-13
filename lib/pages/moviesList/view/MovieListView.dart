@@ -51,7 +51,7 @@ class _MovieListViewState extends State<MovieListView> {
         ),
         title: const Text("Movies"),
         centerTitle: true,
-        backgroundColor: ColorConstants.commonAppColor,
+        backgroundColor: Colors.black,
       ),
       body: GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
