@@ -5,6 +5,7 @@ class ColorConstants {
   static Color darkScaffoldBackgroundColor = hexToColor('#2F2E2E');
   static Color secondaryAppColor = hexToColor('#5E92F3');
   static Color secondaryDarkAppColor = Colors.white;
+  static Color cardBackground = hexToColor('#2A2C36');
 }
 
 Color hexToColor(String hex) {

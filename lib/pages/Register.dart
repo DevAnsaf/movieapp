@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../utils/Color.dart';
+
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
 
@@ -152,32 +154,44 @@ class _RegisterState extends State<Register> {
               const SizedBox(
                 height: 10,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TextButton(
-                      style: TextButton.styleFrom(
-                          foregroundColor: Colors.white,
-                          backgroundColor: Colors.red,
-                          textStyle: const TextStyle(
-                            fontSize: 20,
-                          )
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 15 ),
+                width: double.maxFinite,
+                height: 40,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8), // <-- Radius
                       ),
-                      onPressed: (){}, child: const Text("Save")
-                  ),
-                ],
+                      backgroundColor: ColorConstants.commonAppColor),
+                  child: const Text('Save'),
+                  onPressed: () async {
+                    Navigator.pushNamed(context, "home");
+                  },
+                ),
               ),
               const SizedBox(
                 height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                   Text("Already a Member?Click here!",
+                children:  [
+                   const Text("Already a Member?",
                      style: TextStyle(
                        color: Colors.white,
                      ),
                    ),
+                  Container(
+                    alignment: Alignment.center,
+                    child: TextButton(
+                      child: Text('Login', style: TextStyle(
+                          color: ColorConstants.commonAppColor
+                      ),),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ),
                 ],
               ),
             ],

@@ -16,12 +16,12 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black12,
       body: Center(
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           children: <Widget>[
-            const SizedBox(height: 40.0),
+            const SizedBox(height: 20.0),
             Column(
               children: <Widget>[
                 Container(
@@ -35,6 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     "Welcome to Cine Max",
                     style: TextStyle(
                       fontSize: 20,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -42,7 +43,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(
                   margin: const EdgeInsets.only(bottom: 8, top: 5),
                   alignment: Alignment.center,
-                  child: const Text("login to enjoy"),
+                  child: const Text("login to enjoy", style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                  ),),
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 20, bottom: 8),
@@ -55,6 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     controller: emailController,
                     decoration: InputDecoration(
                       filled: true,
+                      fillColor: Colors.white,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
                         borderSide: const BorderSide(
@@ -80,6 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     autocorrect: false,
                     decoration: InputDecoration(
                       filled: true,
+                      fillColor: Colors.white,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
                         borderSide: const BorderSide(
@@ -91,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 Container(
-                  margin: const EdgeInsets.only(top: 20),
+                  margin: const EdgeInsets.only(top: 10),
                   width: double.maxFinite,
                   height: 40,
                   child: ElevatedButton(
@@ -102,18 +108,20 @@ class _LoginScreenState extends State<LoginScreen> {
                         backgroundColor: ColorConstants.commonAppColor),
                     child: const Text('Login'),
                     onPressed: () async {
-
+                      Navigator.pushNamed(context, "home");
                     },
                   ),
                 ),
                 Container(
-                  margin: const EdgeInsets.only(top: 20, bottom: 20),
+                  margin: const EdgeInsets.only(top: 10, bottom: 20),
                   alignment: Alignment.center,
-                  child: const Text(
-                    "Register",
-                    style: TextStyle(
-                      color: Colors.red,
-                    ),
+                  child: TextButton(
+                    child: Text('Register', style: TextStyle(
+                      color: ColorConstants.commonAppColor
+                    ),),
+                    onPressed: () {
+                      Navigator.pushNamed(context, "register");
+                    },
                   ),
                 ),
               ],

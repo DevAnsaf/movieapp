@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies/utils/Color.dart';
 import 'package:movies/widgets/customBar.dart';
 
 class Category extends StatelessWidget {
@@ -47,35 +48,53 @@ class Category extends StatelessWidget {
                   children: [
                     for(int i = 1; i < 5; i++ )
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 30),
-                        child: Row(
-                          children: [
-                            ClipRect(
-                              child: Image.asset(
-                                "pictures/img$i.jpg",
-                                height: 70,
-                                width: 90,
-                                fit: BoxFit.cover,
+                        padding: const EdgeInsets.symmetric(vertical: 20),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(context, "movieList");
+                          },
+                            child:Card(
+                              elevation: 0.5,
+                              color: ColorConstants.cardBackground,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              child: Row(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: const BorderRadius.only(
+                                        bottomLeft: Radius.circular(8.0),
+                                        topLeft: Radius.circular(8.0)),
+                                    child: Image.asset(
+                                      "pictures/img$i.jpg",
+                                      height: 70,
+                                      width: 90,
+                                      fit: BoxFit.cover,
+
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  const Text(
+                                    "Category",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  const Icon(
+                                    Icons.arrow_forward,
+                                    color: Colors.white,
+                                    size: 23,
+                                  ),
+                                ],
                               ),
                             ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            const Text(
-                              "Category",
-                              style: TextStyle(
-                                fontSize: 22,
-                                color: Colors.white,
-                              ),
-                            ),
-                            Spacer(),
-                            const Icon(
-                              Icons.arrow_forward,
-                              color: Colors.white,
-                              size: 23,
-                            )
-                          ],
                         ),
+
+
                       ),
                   ],
                 ),

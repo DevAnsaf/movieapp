@@ -59,26 +59,25 @@ class MovieDetails extends StatelessWidget {
                   ),
                   //Image and play button
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 50),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            /*boxShadow: [
+                            boxShadow: [
                             BoxShadow(
                               color: Colors.white.withOpacity(0.5),
                               spreadRadius: 1,
                               blurRadius: 8,
                             ),
-                          ],*/
+                          ],
                           ),
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(10),
                             child: Image.asset(
                               "pictures/img1.jpg",
-                              height: 200,
                               width: 180,
                             ),
                           ),
