@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:movies/pages/Home.dart';
 import 'package:movies/pages/Login/view/Login.dart';
 import 'package:movies/pages/MovieDetails.dart';
+import 'package:movies/pages/Profile.dart';
 import 'package:movies/pages/Register.dart';
 import 'package:movies/pages/moviesList/view/MovieListView.dart';
 import 'pages/Category.dart';
@@ -43,8 +44,7 @@ class _MyAppState extends State<MyApp> {
         "category": (context) => const Category(),
         "movie": (context) => const MovieDetails(),
         "movieList": (context) => const MovieListView(),
-//aashik use this name for favourite movies
-        // "favourite": (context) => const Favourite(),
+        "profile": (context) => const Profile()
       },
     );
   }
