@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:movies/pages/Home.dart';
 import 'package:movies/pages/MovieDetails.dart';
+import 'package:movies/pages/MoviePlayer.dart';
 import 'package:movies/pages/Profile.dart';
 import 'package:movies/pages/category/view/Category.dart';
 import 'package:movies/pages/user/view/Register.dart';
@@ -36,7 +37,8 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.black54,
       ),
-      home: const LoginScreen(),
+      home: const MoviePLayer(),
+      //home: const LoginScreen(),
       //home: const Home(),
       routes: {
         "login": (context) => const LoginScreen(),
