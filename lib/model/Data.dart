@@ -1,29 +1,25 @@
 class Data {
   Data({
-      this.id, 
-      this.firstName, 
-      this.lastName, 
-      this.email, 
-      this.password, 
-      this.createdAt, 
-      this.updatedAt,});
+    this.id,
+    this.firstName,
+    this.lastName,
+    this.email,
+    this.token,
+  });
 
   Data.fromJson(dynamic json) {
     id = json['id'];
     firstName = json['firstName'];
     lastName = json['lastName'];
     email = json['email'];
-    password = json['password'];
-    createdAt = json['createdAt'];
-    updatedAt = json['updatedAt'];
+    token = json['token'];
   }
+
   int? id;
   String? firstName;
   String? lastName;
   String? email;
-  String? password;
-  String? createdAt;
-  String? updatedAt;
+  String? token;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -31,10 +27,7 @@ class Data {
     map['firstName'] = firstName;
     map['lastName'] = lastName;
     map['email'] = email;
-    map['password'] = password;
-    map['createdAt'] = createdAt;
-    map['updatedAt'] = updatedAt;
+    map['token'] = token;
     return map;
   }
-
 }
