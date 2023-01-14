@@ -9,7 +9,7 @@ class RegisterRequest {
   });
 
   RegisterRequest.fromJson(dynamic json) {
-    firstName = json["fistName"];
+    firstName = json["firstName"];
     lastName = json["lastName"];
     email = json["email"];
     password = json["password"];
@@ -22,7 +22,7 @@ class RegisterRequest {
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map["fistName"] = firstName;
+    map["firstName"] = firstName;
     map["lastName"] = lastName;
     map["email"] = email;
     map["password"] = password;
