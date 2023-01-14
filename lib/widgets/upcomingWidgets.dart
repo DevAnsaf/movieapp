@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:movies/utils/Color.dart';
 
 // ignore: camel_case_types
 class upcomingWidgets extends StatelessWidget {
@@ -22,11 +23,13 @@ class upcomingWidgets extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                 ),
               ),
-              Text(
-                "All List >",
-                style: TextStyle(
-                  color: Colors.grey,
-                ),
+              TextButton(
+                child:Text("All List >",style: TextStyle(
+                  color: ColorConstants.commonAppColor,
+                ))
+                , onPressed: () {
+                Navigator.pushNamed(context, "movieList");
+              },
               ),
             ],
           ),

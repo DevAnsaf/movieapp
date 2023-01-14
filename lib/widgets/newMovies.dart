@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movies/pages/MovieDetails.dart';
+
+import '../utils/Color.dart';
 
 class newMovies extends StatelessWidget {
   const newMovies({Key? key}) : super(key: key);
@@ -23,11 +24,14 @@ class newMovies extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                 ),
               ),
-              Text(
-                "All List >",
-                style: TextStyle(
-                  color: Colors.grey,
-                ),
+              TextButton(
+                child: Text("All List >",
+                    style: TextStyle(
+                      color: ColorConstants.commonAppColor,
+                    )),
+                onPressed: () {
+                  Navigator.pushNamed(context, "movieList");
+                },
               ),
             ],
           ),
@@ -39,7 +43,7 @@ class newMovies extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              for (int i = 1; i < 6; i++)
+              for (int n = 1; n < 6; n++)
                 InkWell(
                     onTap: () {
                       Navigator.pushNamed(context, "movie");
@@ -47,15 +51,15 @@ class newMovies extends StatelessWidget {
                     child: Container(
                       width: 200,
                       height: 320,
-                      margin: EdgeInsets.only(left: 12),
+                      margin: const EdgeInsets.only(left: 12, bottom: 12),
                       decoration: BoxDecoration(
-                          color: Colors.black12,
+                          color: ColorConstants.cardBackground,
                           borderRadius: BorderRadius.circular(20),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.blue.withOpacity(0.6),
+                              color: Colors.red.withOpacity(0.8),
                               spreadRadius: 1,
-                              blurRadius: 4,
+                              blurRadius: 8,
                             )
                           ]),
                       child: Column(
@@ -67,7 +71,7 @@ class newMovies extends StatelessWidget {
                               topRight: Radius.circular(12),
                             ),
                             child: Image.asset(
-                              "pictures/img$i.jpg",
+                              "pictures/new$n.jpg",
                               height: 220,
                               width: 200,
                               fit: BoxFit.fill,
