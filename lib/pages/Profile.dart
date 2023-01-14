@@ -54,24 +54,22 @@ class Profile extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     textfield(
-                        hintText: 'Username'
+                        hintText: 'First Name'
                     ),
                     textfield(
-                        hintText: 'Email'
+                        hintText: 'Last Name'
                     ),
                     textfield(
-                        hintText: 'Password'
-                    ),
-                    textfield(
-                        hintText: 'Confirm Password'
+                        hintText: 'E-Mail'
                     ),
                     Container(
                       height: 55,
+                      color: Colors.red,
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {},
                         child: const Center(
-                          child: Text("Update", style: TextStyle(
+                          child: Text("Logout", style: TextStyle(
                             fontSize: 23,
                             color: Colors.white,
                           ),
