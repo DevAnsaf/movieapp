@@ -38,9 +38,10 @@ class Home extends StatelessWidget {
                   ),
                   ClipRRect(
                     child: Image.asset(
-                      "pictures/teqto_logo.jpg",
+                      "pictures/logo.png",
                       height: 60,
                       width: 50,
+                      color: Colors.white,
                     ),
                   ),
                 ],

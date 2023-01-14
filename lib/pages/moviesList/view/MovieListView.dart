@@ -17,12 +17,10 @@ class _MovieListViewState extends State<MovieListView> {
     'img3.jpg',
     'img4.jpg',
     'img5.jpg',
-    'img2.jpg',
-    'img3.jpg',
-    'img4.jpg',
-    'img1.jpg',
-    'img3.jpg',
-    'img5.jpg'
+    'img6.jpg',
+    'img7.jpg',
+    'img8.jpg',
+    'img9.jpg'
   ];
 
   List imageText = [
@@ -31,10 +29,10 @@ class _MovieListViewState extends State<MovieListView> {
     'Brave',
     'Lion King',
     'Finding Nemo',
-    'Up',
-    'Brave',
-    'Lion King',
-    'Treasure Planet',
+    'Black Adam',
+    'Deep Cover',
+    'Last day on Earth',
+    'Bad Boys',
     'Brave',
     'Finding Nemo'
   ];
@@ -85,6 +83,7 @@ class _MovieListViewState extends State<MovieListView> {
                       ],
                     ),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         ClipRRect(
                           borderRadius: const BorderRadius.only(
@@ -95,14 +94,15 @@ class _MovieListViewState extends State<MovieListView> {
                           child: Image.asset(
                               'pictures/'+image[index],
                               height: 200,
-                              // width: 120,
-                              fit: BoxFit.fill),
+                              //width: 180,
+                              fit: BoxFit.cover),
                         ),
                         const SizedBox(height: 8,),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             imageText[index],
+                            textAlign: TextAlign.center,
                             style: ThemeConstant.movieListTitle,
                             maxLines: 1,
                           ),
