@@ -27,12 +27,13 @@ class MovieDetails extends StatelessWidget {
               child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical:10, horizontal: 25),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 25),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         InkWell(
-                          onTap: (){
+                          onTap: () {
                             Navigator.pop(context);
                           },
                           child: const Icon(
@@ -42,9 +43,7 @@ class MovieDetails extends StatelessWidget {
                           ),
                         ),
                         InkWell(
-                          onTap: (){
-
-                          },
+                          onTap: () {},
                           child: const Icon(
                             Icons.thumb_up,
                             color: Colors.white,
@@ -59,7 +58,8 @@ class MovieDetails extends StatelessWidget {
                   ),
                   //Image and play button
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 50),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 50),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -67,12 +67,12 @@ class MovieDetails extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             boxShadow: [
-                            BoxShadow(
-                              color: Colors.white.withOpacity(0.5),
-                              spreadRadius: 1,
-                              blurRadius: 8,
-                            ),
-                          ],
+                              BoxShadow(
+                                color: Colors.white.withOpacity(0.5),
+                                spreadRadius: 1,
+                                blurRadius: 8,
+                              ),
+                            ],
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
@@ -113,12 +113,13 @@ class MovieDetails extends StatelessWidget {
                   const MovieDetailsButtons(),
 
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20, horizontal: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: const [
                         Text(
-                          "Movie title",
+                          "Treasure",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 30,
@@ -129,7 +130,7 @@ class MovieDetails extends StatelessWidget {
                           height: 20,
                         ),
                         Text(
-                          "You can write the description of the movie here.You can write the description of the movie here.",
+                          "A new friendship with a geocacher has troublemaker Erica (Ansley Gordon) wondering what the meaning of life is and where she can find it. A new friendship with a geocacher has troublemaker Erica (Ansley Gordon) wondering what the meaning of life is and where she can find it.",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 15,

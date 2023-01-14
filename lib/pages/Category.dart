@@ -16,7 +16,6 @@ class _CategoryState extends State<Category> {
     'Drama',
     'Adventure',
     'Family',
-
   ];
 
   @override
@@ -28,12 +27,13 @@ class _CategoryState extends State<Category> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 15),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     InkWell(
-                      onTap: (){
+                      onTap: () {
                         Navigator.pop(context);
                       },
                       child: const Icon(
@@ -57,17 +57,18 @@ class _CategoryState extends State<Category> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
                 child: Column(
                   children: [
-                    for(int i = 1; i < category.length; i++ )
+                    for (int i = 1; i < category.length; i++)
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 20),
                         child: InkWell(
                           onTap: () {
                             Navigator.pushNamed(context, "movieList");
                           },
-                          child:Card(
+                          child: Card(
                             elevation: 0.5,
                             color: ColorConstants.cardBackground,
                             shape: RoundedRectangleBorder(
@@ -84,13 +85,12 @@ class _CategoryState extends State<Category> {
                                     height: 70,
                                     width: 90,
                                     fit: BoxFit.cover,
-
                                   ),
                                 ),
                                 const SizedBox(
                                   width: 10,
                                 ),
-                                 Text(
+                                Text(
                                   category[i],
                                   style: const TextStyle(
                                     fontSize: 18,
@@ -107,8 +107,6 @@ class _CategoryState extends State<Category> {
                             ),
                           ),
                         ),
-
-
                       ),
                   ],
                 ),
