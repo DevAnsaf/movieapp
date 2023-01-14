@@ -3,10 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:movies/pages/Home.dart';
 import 'package:movies/pages/MovieDetails.dart';
 import 'package:movies/pages/Profile.dart';
+import 'package:movies/pages/category/view/Category.dart';
 import 'package:movies/pages/user/view/Register.dart';
 import 'package:movies/pages/moviesList/view/MovieListView.dart';
 import 'package:movies/pages/user/view/Login.dart';
-import 'pages/Category.dart';
+
 
 void main() {
   runApp(const MyApp());
