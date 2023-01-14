@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:movies/model/Data.dart';
 import 'package:movies/pages/Home.dart';
 import 'package:movies/pages/MovieDetails.dart';
 import 'package:movies/pages/Profile.dart';
 import 'package:movies/pages/user/view/Register.dart';
 import 'package:movies/pages/moviesList/view/MovieListView.dart';
 import 'package:movies/pages/user/view/Login.dart';
+import 'package:movies/utils/Helper.dart';
 import 'pages/Category.dart';
 
 void main() {
@@ -20,6 +22,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
   @override
   void initState() {
     // TODO: implement initState
@@ -35,7 +38,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.black54,
       ),
-      home: const LoginScreen(),
+      home: Helper.isUserAvailable().toString() != '' ? const Home() :const LoginScreen(),
       //home: const Home(),
       routes: {
         "login": (context) => const LoginScreen(),

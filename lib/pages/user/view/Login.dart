@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:movies/model/LoginRequest.dart';
+import 'package:movies/pages/Home.dart';
+import 'package:movies/utils/Helper.dart';
 import 'package:movies/utils/SnackBar.dart';
 
 import '../../../utils/Color.dart';
@@ -197,7 +200,14 @@ class _LoginScreenState extends State<LoginScreen> {
 
                           if (response.status == 1000){
                             showSnackBar(response.message!, response.status!);
-                            Navigator.pushNamed(context, "home");
+                            Helper.saveUserData(response.data!);
+                            Navigator. pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Home(),
+                              ),
+                            );
+                            //Navigator.pushNamed(context, "home");
                           }else {
 
                           }
@@ -217,6 +227,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () {
                         emailController.text = "";
                         passwordController.text = "";
+
                         Navigator.pushNamed(context, "register");
                       },
                     ),
@@ -229,4 +240,5 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
 }
