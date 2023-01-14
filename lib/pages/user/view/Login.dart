@@ -1,13 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:movies/model/LoginRequest.dart';
-import 'package:movies/pages/Home.dart';
 import 'package:movies/utils/Helper.dart';
-import 'package:movies/utils/SnackBar.dart';
 
 import '../../../utils/Color.dart';
 import '../../../utils/Theme.dart';
+import '../../movies/view/Home.dart';
 import '../repository/UserRepo.dart';
 import '../viewModel/UserViewModel.dart';
 

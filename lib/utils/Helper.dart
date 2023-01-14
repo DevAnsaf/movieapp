@@ -7,6 +7,11 @@ import '../model/Data.dart';
 class Helper{
   static String userData = 'USERDATA';
 
+  SharedPreferences? prefs;
+  Future<void> initSharedPreferences() async {
+    prefs = await SharedPreferences.getInstance();
+  }
+
   // Write DATA
   static Future<bool> saveUserData(Data data) async {
 
@@ -22,7 +27,7 @@ class Helper{
     return sharedPreferences.getString(userData) ?? '';
   }
 // Read Data
-  static Future<Data?>? getUserData() async {
+  static Future<Data?> getUserData() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String? jsonString = sharedPreferences.getString(userData) ?? '';
       Map userMap = jsonDecode(jsonString);

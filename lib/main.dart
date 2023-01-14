@@ -1,18 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:movies/model/Data.dart';
-import 'package:movies/pages/Home.dart';
-import 'package:movies/pages/MovieDetails.dart';
+import 'package:movies/pages/movies/view/Home.dart';
+import 'package:movies/pages/movies/view/MovieDetails.dart';
+import 'package:movies/pages/movies/view/MovieListView.dart';
 import 'package:movies/pages/Profile.dart';
+import 'package:movies/pages/category/view/Category.dart';
+import 'package:movies/pages/category/viewModel/CategoryViewModel.dart';
+import 'package:movies/pages/movies/viewModel/MoviesListViewModel.dart';
 import 'package:movies/pages/user/view/Register.dart';
-import 'package:movies/pages/moviesList/view/MovieListView.dart';
 import 'package:movies/pages/user/view/Login.dart';
 import 'package:movies/utils/Helper.dart';
-import 'pages/Category.dart';
+import 'package:provider/provider.dart';
+import 'package:provider/single_child_widget.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: providers,
+      child: const MyApp(),
+    ),
+  );
 }
+
+List<SingleChildWidget> providers = [
+  ChangeNotifierProvider<CategoryViewModel>(create: (_) => CategoryViewModel()),
+  ChangeNotifierProvider<MoviesListViewModel>(create: (_) => MoviesListViewModel()),
+];
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -22,7 +35,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   void initState() {
     // TODO: implement initState
@@ -38,7 +50,9 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.black54,
       ),
-      home: Helper.isUserAvailable().toString() != '' ? const Home() :const LoginScreen(),
+      home: Helper.isUserAvailable().toString() != ''
+          ? const Home()
+          : const LoginScreen(),
       //home: const Home(),
       routes: {
         "login": (context) => const LoginScreen(),
@@ -48,7 +62,7 @@ class _MyAppState extends State<MyApp> {
         "movie": (context) => const MovieDetails(),
         "movieList": (context) => const MovieListView(),
         "profile": (context) => const Profile(),
-        "favourite":(context) => const MovieListView()
+        "favourite": (context) => const MovieListView()
       },
     );
   }
