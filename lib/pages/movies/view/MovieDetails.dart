@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies/model/Movie.dart';
+import 'package:movies/pages/movies/view/MoviePlayer.dart';
 
 import '../../../widgets/MovieDetailsButtons.dart';
 import '../../../widgets/RecommendMovies.dart';
@@ -101,10 +102,20 @@ class MovieDetails extends StatelessWidget {
                               ),
                             ],
                           ),
-                          child: const Icon(
-                            Icons.play_arrow,
-                            color: Colors.black,
-                            size: 60,
+                          child:  InkWell(
+                            child: const Icon(
+                              Icons.play_arrow,
+                              color: Colors.black,
+                              size: 60,
+                            ),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => MoviePLayer(),
+                                ),
+                              );
+                            },
                           ),
                         ),
                       ],
