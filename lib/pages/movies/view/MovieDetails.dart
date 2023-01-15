@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:movies/model/Movie.dart';
 
-import '../widgets/MovieDetailsButtons.dart';
-import '../widgets/RecommendMovies.dart';
-import '../widgets/customBar.dart';
+import '../../../widgets/MovieDetailsButtons.dart';
+import '../../../widgets/RecommendMovies.dart';
+import '../../../widgets/customBar.dart';
 
 class MovieDetails extends StatelessWidget {
-  const MovieDetails({Key? key}) : super(key: key);
+  const MovieDetails({Key? key, this.movie}) : super(key: key);
+
+  final Movie? movie;
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +18,8 @@ class MovieDetails extends StatelessWidget {
           //Behind image
           Opacity(
             opacity: 0.4,
-            child: Image.asset(
-              "pictures/img1.jpg",
+            child: Image.network(
+              movie?.imageUrl ?? "https://i.pinimg.com/originals/4c/6c/7e/4c6c7e0d845558fbffee287a734d1968.jpg",
               height: 200,
               width: double.infinity,
               fit: BoxFit.cover,
@@ -27,12 +30,13 @@ class MovieDetails extends StatelessWidget {
               child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical:10, horizontal: 25),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 25),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         InkWell(
-                          onTap: (){
+                          onTap: () {
                             Navigator.pop(context);
                           },
                           child: const Icon(
@@ -42,9 +46,7 @@ class MovieDetails extends StatelessWidget {
                           ),
                         ),
                         InkWell(
-                          onTap: (){
-
-                          },
+                          onTap: () {},
                           child: const Icon(
                             Icons.thumb_up,
                             color: Colors.white,
@@ -59,7 +61,8 @@ class MovieDetails extends StatelessWidget {
                   ),
                   //Image and play button
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 50),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 50),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -67,17 +70,17 @@ class MovieDetails extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             boxShadow: [
-                            BoxShadow(
-                              color: Colors.white.withOpacity(0.5),
-                              spreadRadius: 1,
-                              blurRadius: 8,
-                            ),
-                          ],
+                              BoxShadow(
+                                color: Colors.white.withOpacity(0.5),
+                                spreadRadius: 1,
+                                blurRadius: 8,
+                              ),
+                            ],
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
-                            child: Image.asset(
-                              "pictures/img1.jpg",
+                            child: Image.network(
+                              movie?.imageUrl ?? "https://i.pinimg.com/originals/4c/6c/7e/4c6c7e0d845558fbffee287a734d1968.jpg",
                               width: 180,
                             ),
                           ),
@@ -113,24 +116,26 @@ class MovieDetails extends StatelessWidget {
                   const MovieDetailsButtons(),
 
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20, horizontal: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
-                          "Movie title",
-                          style: TextStyle(
+                          movie?.name ?? "Movie title",
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 30,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Text(
-                          "You can write the description of the movie here.You can write the description of the movie here.",
-                          style: TextStyle(
+                          movie?.description ??
+                              "You can write the description of the movie here.You can write the description of the movie here.",
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 15,
                           ),
