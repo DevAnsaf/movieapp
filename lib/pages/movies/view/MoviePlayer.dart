@@ -12,6 +12,7 @@ class _MoviePLayerState extends State<MoviePLayer> {
   String url = "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4";
   VideoPlayerController? _controller;
 
+
   @override
   void initState() {
     // TODO: implement initState
