@@ -86,7 +86,7 @@ class newMovies extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Movies title",
+                                  "Movies title$n",
                                   style: TextStyle(
                                       color: Colors.white70,
                                       fontSize: 20,
