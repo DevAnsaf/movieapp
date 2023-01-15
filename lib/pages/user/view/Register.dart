@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/model/RegisterRequest.dart';
 import 'package:movies/pages/user/repository/UserRepo.dart';
@@ -19,6 +20,38 @@ class _RegisterState extends State<Register> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  final _formKey = GlobalKey<FormState>();
+  bool _passwordVisible = false;
+  bool _cpasswordVisible = false;
+
+  bool validateEmail(String value) {
+    String pattern =
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    RegExp regex = RegExp(pattern);
+    return (!regex.hasMatch(value)) ? false : true;
+  }
+
+  @override
+  void initState() {
+    _passwordVisible = false;
+    _cpasswordVisible = false;
+  }
+
+  void showSnackBar(String message, int status) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(message),
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: status == 1000 ? CupertinoColors.activeGreen : Colors.redAccent,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(24),
+      ),
+      margin: EdgeInsets.only(
+          bottom: MediaQuery.of(context).size.height - 100,
+          right: 20,
+          left: 20),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,155 +64,225 @@ class _RegisterState extends State<Register> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Icon(
-                          Icons.arrow_back,
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Icon(
+                            Icons.arrow_back,
+                            color: Colors.white,
+                            size: 30,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        const Text(
+                          'Register',
+                          style: TextStyle(
+                            fontSize: 25,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Card(
                           color: Colors.white,
-                          size: 30,
+                          margin: const EdgeInsets.symmetric(
+                            vertical: 10.0,
+                          ),
+                          child: ListTile(
+                            leading: const Icon(
+                              Icons.person,
+                              color: Colors.black,
+                            ),
+                            title: TextFormField(
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 15,
+                              ),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Please enter first name';
+                                }
+                                return null;
+                              },
+                              controller: firstnameController,
+                              decoration: const InputDecoration(
+                                hintText: "Enter first name",
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      const Text(
-                        'Register',
-                        style: TextStyle(
-                          fontSize: 25,
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Card(
                           color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                       Card(
-                        color: Colors.white,
-                        margin: const EdgeInsets.symmetric(
-                          vertical: 10.0,
-                        ),
-                        child: ListTile(
-                          leading: const Icon(
-                            Icons.person,
-                            color: Colors.black,
+                          margin: const EdgeInsets.symmetric(
+                            vertical: 10.0,
                           ),
-                          title: TextField(
-                            style: const TextStyle(
+                          child: ListTile(
+                            leading: const Icon(
+                              Icons.person,
                               color: Colors.black,
-                              fontSize: 15,
                             ),
-                            controller: firstnameController,
-                            decoration: const InputDecoration(
-                              hintText: "Enter first name",
+                            title: TextFormField(
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 15,
+                              ),
+                              controller: lastNameController,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Please enter last name';
+                                }
+                                return null;
+                              },
+                              decoration: const InputDecoration(
+                                hintText: "Enter last name",
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                       Card(
-                        color: Colors.white,
-                        margin: const EdgeInsets.symmetric(
-                          vertical: 10.0,
+                        const SizedBox(
+                          height: 10,
                         ),
-                        child: ListTile(
-                          leading: const Icon(
-                            Icons.person,
-                            color: Colors.black,
+                        Card(
+                          color: Colors.white,
+                          margin: const EdgeInsets.symmetric(
+                            vertical: 10.0,
                           ),
-                          title: TextField(
-                            style: const TextStyle(
+                          child: ListTile(
+                            leading: const Icon(
+                              Icons.email,
                               color: Colors.black,
-                              fontSize: 15,
                             ),
-                            controller: lastNameController,
-                            decoration: const InputDecoration(
-                              hintText: "Enter last name",
+                            title: TextFormField(
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 15,
+                              ),
+                              controller: emailController,
+                              decoration: const InputDecoration(
+                                hintText: "Enter email",
+                              ),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Please enter email';
+                                } else if (!validateEmail(value)) {
+                                  return 'Please enter valid email';
+                                }
+                                return null;
+                              },
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                       Card(
-                        color: Colors.white,
-                        margin: const EdgeInsets.symmetric(
-                          vertical: 10.0,
+                        const SizedBox(
+                          height: 10,
                         ),
-                        child: ListTile(
-                          leading: const Icon(
-                            Icons.email,
-                            color: Colors.black,
+                        Card(
+                          color: Colors.white,
+                          margin: const EdgeInsets.symmetric(
+                            vertical: 10.0,
                           ),
-                          title: TextField(
-                            style: const TextStyle(
+                          child: ListTile(
+                            leading: const Icon(
+                              Icons.lock,
                               color: Colors.black,
-                              fontSize: 15,
                             ),
-                            controller: emailController,
-                            decoration: const InputDecoration(
-                              hintText: "Enter email",
+                            title: TextFormField(
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 15,
+                              ),
+                              controller: passwordController,
+                              obscureText: !_passwordVisible,
+                              decoration: InputDecoration(
+                                hintText: "Enter password",
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    // Based on passwordVisible state choose the icon
+                                    _passwordVisible
+                                        ? Icons.visibility
+                                        : Icons.visibility_off,
+                                    color: ColorConstants.commonAppColor,
+                                  ),
+                                  onPressed: () {
+                                    // Update the state i.e. toogle the state of passwordVisible variable
+                                    setState(() {
+                                      _passwordVisible = !_passwordVisible;
+                                    });
+                                  },
+                                ),
+                              ),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Please enter password';
+                                }
+                                return null;
+                              },
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                       Card(
-                        color: Colors.white,
-                        margin: const EdgeInsets.symmetric(
-                          vertical: 10.0,
+                        const SizedBox(
+                          height: 10,
                         ),
-                        child: ListTile(
-                          leading: const Icon(
-                            Icons.lock,
-                            color: Colors.black,
+                        Card(
+                          color: Colors.white,
+                          margin: const EdgeInsets.symmetric(
+                            vertical: 10.0,
                           ),
-                          title: TextField(
-                            style: const TextStyle(
+                          child: ListTile(
+                            leading: const Icon(
+                              Icons.lock,
                               color: Colors.black,
-                              fontSize: 15,
                             ),
-                            controller: passwordController,
-                            decoration: const InputDecoration(
-                              hintText: "Enter password",
+                            title: TextFormField(
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 15,
+                              ),
+                              obscureText: !_cpasswordVisible,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Please enter confirm password';
+                                } else if (value !=
+                                    passwordController.text.toString()) {
+                                  return 'Password not match';
+                                }
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                hintText: "Confirm password",
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    // Based on passwordVisible state choose the icon
+                                    _cpasswordVisible
+                                        ? Icons.visibility
+                                        : Icons.visibility_off,
+                                    color: ColorConstants.commonAppColor,
+                                  ),
+                                  onPressed: () {
+                                    // Update the state i.e. toogle the state of passwordVisible variable
+                                    setState(() {
+                                      _cpasswordVisible = !_cpasswordVisible;
+                                    });
+                                  },
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const Card(
-                        color: Colors.white,
-                        margin: EdgeInsets.symmetric(
-                          vertical: 10.0,
-                        ),
-                        child: ListTile(
-                          leading: Icon(
-                            Icons.lock,
-                            color: Colors.black,
-                          ),
-                          title: TextField(
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 15,
-                            ),
-                            decoration: InputDecoration(
-                              hintText: "Confirm password",
-                            ),
-                          ),
-                        ),
-                      ),
-                    ]),
+                      ]),
+                ),
               ),
               const SizedBox(
                 height: 10,
@@ -197,18 +300,26 @@ class _RegisterState extends State<Register> {
                       backgroundColor: ColorConstants.commonAppColor),
                   child: const Text('Register'),
                   onPressed: () async {
-                    var request = RegisterRequest();
-                    request.firstName = firstnameController.text.toString();
-                    request.lastName = lastNameController.text.toString();
-                    request.email = emailController.text.toString();
-                    request.password = passwordController.text.toString();
+                    if (_formKey.currentState!.validate()) {
+                      var request = RegisterRequest();
+                      request.firstName = firstnameController.text.toString();
+                      request.lastName = lastNameController.text.toString();
+                      request.email = emailController.text.toString();
+                      request.password = passwordController.text.toString();
 
-                    print(request);
+                      print(request);
 
-                    var response =
-                        await userViewModel.customerRegister(request);
+                      var response = await userViewModel
+                          .customerRegister(request);
 
-                    print(response);
+                      showSnackBar(response.message!,response.status!);
+                      if (response.status == 1000){
+                        Navigator.pop(context);
+                      }
+
+
+                      //print(response);
+                    } else {}
                   },
                 ),
               ),
@@ -243,5 +354,14 @@ class _RegisterState extends State<Register> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    firstnameController.dispose();
+    lastNameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 }
