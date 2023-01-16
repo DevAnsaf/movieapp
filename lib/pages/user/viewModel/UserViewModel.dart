@@ -1,17 +1,20 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:movies/model/CustomerResponse.dart';
+import 'package:movies/model/LoginRequest.dart';
 import 'package:movies/model/RegisterRequest.dart';
 import 'package:movies/model/UserDataResponse.dart';
 import 'package:movies/pages/user/repository/UserRepo.dart';
 
 
+import '../../../model/LoginResponse.dart';
 import '../repository/UserClassRepository.dart';
 
 class UserViewModel with ChangeNotifier{
   CustomerResponse? customerResponse;
+   LoginResponse? loginResponse;
   UserDataResponse? userDataResponse;
   UserClassRepository? userClassRepository;
-  List<CustomerData>? profile;
   bool loading = false;
 
   TextEditingController _firstname = new TextEditingController();
@@ -46,8 +49,10 @@ class UserViewModel with ChangeNotifier{
     return userDataResponse!;
   }
 
+  Future<LoginResponse> customerLogin(LoginRequest request) async {
+    loginResponse = await userClassRepository?.login(request);
+    return loginResponse!;
+  }
 
 }
 
-class CustomerData {
-}
