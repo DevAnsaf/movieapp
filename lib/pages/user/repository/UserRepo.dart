@@ -21,7 +21,7 @@ class UserRepo extends UserClassRepository {
   @override
   Future<LoginResponse> login(LoginRequest request) async {
     try {
-      var endpoint = Constants.getEndpoint("customers/login");
+      var endpoint = Constants.getEndpoint("user/login");
       http.Response response = await http.post(Uri.parse(endpoint),
           headers: header, body: jsonEncode(request.toJson()));
       if (response.statusCode == 200) {
@@ -43,7 +43,7 @@ class UserRepo extends UserClassRepository {
   @override
   Future<CustomerResponse> register(RegisterRequest request) async {
     try {
-      var endpoint = Constants.getEndpoint("customers/add");
+      var endpoint = Constants.getEndpoint("user/add");
       print(jsonEncode(request.toJson()));
       http.Response response = await http.post(Uri.parse(endpoint),
           headers: header, body: jsonEncode(request.toJson()));

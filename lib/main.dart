@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:movies/pages/movies/view/Home.dart';
 import 'package:movies/pages/movies/view/MovieDetails.dart';
 import 'package:movies/pages/movies/view/MovieListView.dart';
@@ -24,7 +25,8 @@ void main() {
 
 List<SingleChildWidget> providers = [
   ChangeNotifierProvider<CategoryViewModel>(create: (_) => CategoryViewModel()),
-  ChangeNotifierProvider<MoviesListViewModel>(create: (_) => MoviesListViewModel()),
+  ChangeNotifierProvider<MoviesListViewModel>(
+      create: (_) => MoviesListViewModel()),
 ];
 
 class MyApp extends StatefulWidget {
@@ -35,13 +37,21 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  bool isUserAvailable = false;
   @override
   void initState() {
-    // TODO: implement initState
-    //
+    Helper.isUserAvailable().then((value) => {
+    if (value != '') {
+      isUserAvailable = true
+    } else {
+    isUserAvailable = false
+    }
+    });
+
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
     super.initState();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -50,9 +60,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.black54,
       ),
-      home: Helper.isUserAvailable().toString() != ''
-          ? const Home()
-          : const LoginScreen(),
+      initialRoute: isUserAvailable ? "home" : "login",
       //home: const Home(),
       routes: {
         "login": (context) => const LoginScreen(),
