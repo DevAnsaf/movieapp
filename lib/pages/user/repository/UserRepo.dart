@@ -4,18 +4,13 @@ import 'package:movies/model/CustomerResponse.dart';
 import 'package:movies/model/LoginRequest.dart';
 import 'package:movies/model/RegisterRequest.dart';
 import 'package:http/http.dart' as http;
+import 'package:movies/model/UserDataResponse.dart';
 
 import '../../../utils/Constants.dart';
 import 'UserClassRepository.dart';
 
 class UserRepo extends UserClassRepository {
   Map<String, String> header = {"Content-Type": "application/json"};
-
-  @override
-  Future<CustomerResponse> getAllCustomer() {
-    // TODO: implement getAllCustomer
-    throw UnimplementedError();
-  }
 
   @override
   Future<CustomerResponse> login(LoginRequest request) {
@@ -41,6 +36,30 @@ class UserRepo extends UserClassRepository {
       }
     } catch (e) {
       print(e);
+
+    }
+    throw Exception("Error");
+  }
+
+  @override
+  Future<UserDataResponse> getUserById(int id) async {
+    try {
+      var endpoint = Constants.getEndpoint("customers/$id");
+      http.Response response = await http.get(Uri.parse(endpoint),
+          headers: header);
+      if (response.statusCode == 200) {
+        String data = response.body;
+        var jsonData = jsonDecode(data);
+        print(jsonData);
+        UserDataResponse userDataResponseResponse = UserDataResponse.fromJson(jsonData);
+        print(userDataResponseResponse.toJson());
+        return userDataResponseResponse;
+      } else {
+        print("status code# = ${response.statusCode}");
+      }
+    } catch (e) {
+      print(e);
+
     }
     throw Exception("Error");
   }
