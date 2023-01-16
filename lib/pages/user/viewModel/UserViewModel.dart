@@ -1,30 +1,32 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:movies/model/CustomerResponse.dart';
 import 'package:movies/model/LoginRequest.dart';
 import 'package:movies/model/RegisterRequest.dart';
 import 'package:movies/model/UserDataResponse.dart';
 import 'package:movies/pages/user/repository/UserRepo.dart';
+import 'package:movies/utils/Helper.dart';
 
 
+import '../../../model/Data.dart';
 import '../../../model/LoginResponse.dart';
 import '../repository/UserClassRepository.dart';
 
 class UserViewModel with ChangeNotifier{
+
+  TextEditingController firstname = TextEditingController();
+  TextEditingController lastname =  TextEditingController();
+  TextEditingController email =  TextEditingController();
+
   CustomerResponse? customerResponse;
    LoginResponse? loginResponse;
   UserDataResponse? userDataResponse;
   UserClassRepository? userClassRepository;
   bool loading = false;
 
-  TextEditingController _firstname = new TextEditingController();
-  TextEditingController _lastname = new TextEditingController();
-  TextEditingController _email = new TextEditingController();
 
-  TextEditingController getTotal()
-  {
-    return _firstname;
-  }
+
+
 
   UserViewModel({this.customerResponse, this.userClassRepository});
 
@@ -32,9 +34,7 @@ class UserViewModel with ChangeNotifier{
     var viewModel = UserViewModel(userClassRepository: UserRepo());
     loading = true;
     userDataResponse = (await viewModel.userClassRepository) as UserDataResponse?;
-    _firstname.text = userDataResponse?.userData?.firstName ?? "";
-    _lastname.text = userDataResponse?.userData?.lastName ?? "";
-    _email.text = userDataResponse?.userData?.email ?? "";
+
     loading = false;
   }
 
@@ -52,6 +52,18 @@ class UserViewModel with ChangeNotifier{
   Future<LoginResponse> customerLogin(LoginRequest request) async {
     loginResponse = await userClassRepository?.login(request);
     return loginResponse!;
+  }
+
+  getUserData() async {
+    loading = true;
+    await Helper.getUserData().then((value) => {
+       firstname.text = value?.firstName ?? "",
+       lastname.text = value?.lastName ?? "",
+       email.text = value?.email ?? "",
+
+    });
+    loading = false;
+    notifyListeners();
   }
 
 }
