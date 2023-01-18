@@ -10,6 +10,7 @@ import 'package:movies/pages/category/viewModel/CategoryViewModel.dart';
 import 'package:movies/pages/movies/viewModel/MoviesListViewModel.dart';
 import 'package:movies/pages/user/view/Register.dart';
 import 'package:movies/pages/user/view/Login.dart';
+import 'package:movies/pages/user/viewModel/UserViewModel.dart';
 import 'package:movies/utils/Helper.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
@@ -27,6 +28,7 @@ List<SingleChildWidget> providers = [
   ChangeNotifierProvider<CategoryViewModel>(create: (_) => CategoryViewModel()),
   ChangeNotifierProvider<MoviesListViewModel>(
       create: (_) => MoviesListViewModel()),
+  ChangeNotifierProvider<UserViewModel>(create: (_) => UserViewModel()),
 ];
 
 class MyApp extends StatefulWidget {
