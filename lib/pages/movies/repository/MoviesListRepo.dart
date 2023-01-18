@@ -42,5 +42,65 @@ class MoviesListRepo extends MoviesListClassRepository {
     throw Exception("Error");
   }
 
+  @override
+  Future<MovieListResponse> getAllMoviesListByType(String type) async {
+    var prefs = await SharedPreferences.getInstance();
+    final myString = prefs.getString(Helper.userData) ?? '';
+    Map userMap = jsonDecode(myString);
+    var user = Data.fromJson(userMap);
+
+    Map<String, String> tokenHeader = {
+      "Content-Type": "application/json",
+      "authorization": "Bearer ${user.token}"
+    };
+    try {
+      var endpoint = Constants.getEndpoint("movie/all/$type");
+      http.Response response = await http.get(Uri.parse(endpoint),
+          headers: tokenHeader);
+      if (response.statusCode == 200) {
+        String data = response.body;
+        var jsonData = jsonDecode(data);
+        MovieListResponse movieResponse = MovieListResponse.fromJson(jsonData);
+        print(movieResponse.toJson());
+        return movieResponse;
+      } else {
+        print("status code# = ${response.statusCode}");
+      }
+    } catch (e) {
+      print(e);
+    }
+    throw Exception("Error");
+  }
+
+  @override
+  Future<MovieListResponse> getAllMoviesListByCategory(int id) async {
+    var prefs = await SharedPreferences.getInstance();
+    final myString = prefs.getString(Helper.userData) ?? '';
+    Map userMap = jsonDecode(myString);
+    var user = Data.fromJson(userMap);
+
+    Map<String, String> tokenHeader = {
+      "Content-Type": "application/json",
+      "authorization": "Bearer ${user.token}"
+    };
+    try {
+      var endpoint = Constants.getEndpoint("movie/all/category/$id");
+      http.Response response = await http.get(Uri.parse(endpoint),
+          headers: tokenHeader);
+      if (response.statusCode == 200) {
+        String data = response.body;
+        var jsonData = jsonDecode(data);
+        MovieListResponse movieResponse = MovieListResponse.fromJson(jsonData);
+        print(movieResponse.toJson());
+        return movieResponse;
+      } else {
+        print("status code# = ${response.statusCode}");
+      }
+    } catch (e) {
+      print(e);
+    }
+    throw Exception("Error");
+  }
+
 
 }

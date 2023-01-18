@@ -4,7 +4,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:movies/pages/movies/view/Home.dart';
 import 'package:movies/pages/movies/view/MovieDetails.dart';
 import 'package:movies/pages/movies/view/MovieListView.dart';
-import 'package:movies/pages/Profile.dart';
+import 'package:movies/pages/user/view/Profile.dart';
 import 'package:movies/pages/category/view/Category.dart';
 import 'package:movies/pages/category/viewModel/CategoryViewModel.dart';
 import 'package:movies/pages/movies/viewModel/MoviesListViewModel.dart';

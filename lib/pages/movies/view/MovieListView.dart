@@ -7,7 +7,8 @@ import 'package:provider/provider.dart';
 import '../../../utils/Theme.dart';
 
 class MovieListView extends StatefulWidget {
-  const MovieListView({Key? key}) : super(key: key);
+  const MovieListView({Key? key, this.id}) : super(key: key);
+  final int? id;
 
   @override
   State<MovieListView> createState() => _MovieListViewState();
@@ -18,34 +19,12 @@ class _MovieListViewState extends State<MovieListView> {
   void initState() {
     super.initState();
     final provider = Provider.of<MoviesListViewModel>(context, listen: false);
-    provider.getAllMovieList();
+    if (widget.id != null) {
+      provider.getAllMovieListByCategory(widget.id!);
+    } else {
+      provider.getAllMovieList();
+    }
   }
-
-  List image = [
-    'img1.jpg',
-    'img2.jpg',
-    'img3.jpg',
-    'img4.jpg',
-    'img5.jpg',
-    'img6.jpg',
-    'img7.jpg',
-    'img8.jpg',
-    'img9.jpg'
-  ];
-
-  List imageText = [
-    'Treasure Planet',
-    'Up',
-    'Brave',
-    'Lion King',
-    'Finding Nemo',
-    'Black Adam',
-    'Deep Cover',
-    'Last day on Earth',
-    'Bad Boys',
-    'Brave',
-    'Finding Nemo'
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +37,9 @@ class _MovieListViewState extends State<MovieListView> {
             Navigator.pop(context);
           },
         ),
-        title: const Text("Movies"),
+        title: Text((widget.id != null)
+            ? "${provided.movieListResponse?.movie?[0].category?.name}"
+            : "Movies"),
         centerTitle: true,
         backgroundColor: Colors.black,
       ),
@@ -81,7 +62,9 @@ class _MovieListViewState extends State<MovieListView> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => MovieDetails(movie: provided.movieListResponse?.movie?[index]),
+                            builder: (context) => MovieDetails(
+                                movie:
+                                    provided.movieListResponse?.movie?[index]),
                           ),
                         );
                       },
@@ -121,7 +104,6 @@ class _MovieListViewState extends State<MovieListView> {
                                       fit: BoxFit.cover),
                                 ),
                               ),
-
                               Expanded(
                                 flex: 1,
                                 child: Padding(

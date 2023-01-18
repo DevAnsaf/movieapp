@@ -20,7 +20,8 @@ class MovieDetails extends StatelessWidget {
           Opacity(
             opacity: 0.4,
             child: Image.network(
-              movie?.imageUrl ?? "https://i.pinimg.com/originals/4c/6c/7e/4c6c7e0d845558fbffee287a734d1968.jpg",
+              movie?.imageUrl ??
+                  "https://i.pinimg.com/originals/4c/6c/7e/4c6c7e0d845558fbffee287a734d1968.jpg",
               height: 200,
               width: double.infinity,
               fit: BoxFit.cover,
@@ -81,7 +82,8 @@ class MovieDetails extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: Image.network(
-                              movie?.imageUrl ?? "https://i.pinimg.com/originals/4c/6c/7e/4c6c7e0d845558fbffee287a734d1968.jpg",
+                              movie?.imageUrl ??
+                                  "https://i.pinimg.com/originals/4c/6c/7e/4c6c7e0d845558fbffee287a734d1968.jpg",
                               width: 180,
                             ),
                           ),
@@ -102,7 +104,7 @@ class MovieDetails extends StatelessWidget {
                               ),
                             ],
                           ),
-                          child:  InkWell(
+                          child: InkWell(
                             child: const Icon(
                               Icons.play_arrow,
                               color: Colors.black,
@@ -112,7 +114,10 @@ class MovieDetails extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => MoviePLayer(),
+                                  builder: (context) => MoviePLayer(
+                                    videoUrl: movie?.streamUrl ??
+                                        "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
+                                  ),
                                 ),
                               );
                             },

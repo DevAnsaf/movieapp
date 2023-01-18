@@ -1,10 +1,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:movies/pages/user/repository/UserRepo.dart';
+import 'package:movies/pages/user/view/Login.dart';
 import 'package:movies/pages/user/viewModel/UserViewModel.dart';
 import 'package:provider/provider.dart';
-import '../utils/Color.dart';
-import '../utils/Helper.dart';
+import '../../../utils/Color.dart';
+import '../../../utils/Helper.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -173,7 +174,7 @@ class _ProfileState extends State<Profile> {
           onPressed: ()  {
             Helper.removeAllPref();
 
-            Navigator.pushNamed(context, "login");
+            Navigator.of(context).pushNamedAndRemoveUntil('login', (Route<dynamic> route) => false);
 
           },
         ),
