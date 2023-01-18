@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 class MoviePLayer extends StatefulWidget {
-  const MoviePLayer({Key? key}) : super(key: key);
-
+  const MoviePLayer({Key? key, required this.videoUrl}) : super(key: key);
+  final String videoUrl;
   @override
   State<MoviePLayer> createState() => _MoviePLayerState();
+
 }
 
 class _MoviePLayerState extends State<MoviePLayer> {
-  String url = "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4";
+
   VideoPlayerController? _controller;
 
 
@@ -17,7 +18,7 @@ class _MoviePLayerState extends State<MoviePLayer> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _controller = VideoPlayerController.network(url)
+    _controller = VideoPlayerController.network(widget.videoUrl)
       ..initialize().then((_) {
         setState(() {});
       });

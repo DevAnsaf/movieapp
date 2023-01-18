@@ -1,13 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:movies/pages/movies/viewModel/MoviesListViewModel.dart';
 import 'package:movies/widgets/customBar.dart';
 import 'package:movies/widgets/newMovies.dart';
 import 'package:movies/widgets/upcomingWidgets.dart';
+import 'package:provider/provider.dart';
 
-class Home extends StatelessWidget {
+import '../../user/viewModel/UserViewModel.dart';
+
+
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+  @override
+  void initState() {
+    super.initState();
+    final postMdl = Provider.of<UserViewModel>(context, listen: false);
+    postMdl.getUserData();
+  }
+  @override
   Widget build(BuildContext context) {
+    final postMdl = Provider.of<UserViewModel>(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -21,7 +39,7 @@ class Home extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Ansaf",
+                        ("${postMdl.firstname.text} ${postMdl.lastname.text}") ?? '',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 30,
@@ -78,11 +96,11 @@ class Home extends StatelessWidget {
             SizedBox(
               height: 25,
             ),
-            upcomingWidgets(),
+            UpComing(),
             SizedBox(
               height: 30,
             ),
-            newMovies(),
+            NewMovies(),
           ],
         ),
       ),

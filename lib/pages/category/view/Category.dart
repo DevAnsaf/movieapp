@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies/pages/category/repository/CategoryRepo.dart';
 import 'package:movies/pages/category/viewModel/CategoryViewModel.dart';
+import 'package:movies/pages/movies/view/MovieListView.dart';
 import 'package:movies/utils/Color.dart';
 import 'package:movies/widgets/customBar.dart';
 import 'package:provider/provider.dart';
@@ -70,7 +71,12 @@ class _CategoryState extends State<Category> {
                           padding: const EdgeInsets.symmetric(vertical: 20),
                           child: InkWell(
                             onTap: () {
-                              Navigator.pushNamed(context, "movieList");
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => MovieListView(id: provided.categories?[i].id),
+                                ),
+                              );;
                             },
                             child:Card(
                               elevation: 0.5,
