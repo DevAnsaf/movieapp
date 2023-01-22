@@ -23,6 +23,7 @@ class UserViewModel with ChangeNotifier{
   UserDataResponse? userDataResponse;
   UserClassRepository? userClassRepository;
   bool loading = false;
+  bool isUser = false;
 
 
 
@@ -63,6 +64,18 @@ class UserViewModel with ChangeNotifier{
 
     });
     loading = false;
+    notifyListeners();
+  }
+
+  getAvailableUser() async {
+    await Helper.getUserData().then((value) => {
+      if(value != null){
+        isUser = true
+      }else{
+        isUser = false
+      }
+    });
+
     notifyListeners();
   }
 
