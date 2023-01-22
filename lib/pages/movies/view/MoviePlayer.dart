@@ -75,7 +75,7 @@ class _MoviePLayerState extends State<MoviePLayer> {
               ),
               IconButton(
                 onPressed: () {
-                  _controller!.value.isPlaying ? _controller!.pause : _controller!.play();
+                  _controller!.value.isPlaying ? _controller!.pause() : _controller!.play();
                 },
                 icon: const Icon(Icons.play_arrow),
                 color: Colors.white,

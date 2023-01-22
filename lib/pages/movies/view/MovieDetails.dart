@@ -129,7 +129,7 @@ class MovieDetails extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  const MovieDetailsButtons(),
+                   MovieDetailsButtons(url:movie!.streamUrl!),
 
                   Padding(
                     padding: const EdgeInsets.symmetric(
