@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:movies/pages/movies/view/Home.dart';
 import 'package:movies/pages/movies/view/MovieDetails.dart';
@@ -15,7 +16,14 @@ import 'package:movies/utils/Helper.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Plugin must be initialized before using
+  await FlutterDownloader.initialize(
+      debug: true, // optional: set to false to disable printing logs to console (default: true)
+      ignoreSsl: true // option: set to false to disable working with http links (default: false)
+  );
   runApp(
     MultiProvider(
       providers: providers,
